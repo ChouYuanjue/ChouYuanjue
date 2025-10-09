@@ -23,7 +23,7 @@ jobs:
 
           # Featured repositories (add up to 6, including your top projects)
           plugin_repositories: yes
-          plugin_repositories_featured: ChouYuanjue/doge-repo,ChouYuanjue/AI_Emoji_Kitchen_Lab,ChouYuanjue/TeX-QB-Gen,ChouYuanjue/PDF_Summary_Tool,ChouYuanjue/Informal_Notes_on_Mathematics,ChouYuanjue/Tangut_Chinese_Translator
+          plugin_repositories_featured: ChouYuanjue/doge-repo,ChouYuanjue/TeX-QB-Gen,ChouYuanjue/PDF_Summary_Tool,ChouYuanjue/AI_Emoji_Kitchen_Lab,ChouYuanjue/Informal_Notes_on_Mathematics,ChouYuanjue/Tangut_Chinese_Translator
 
           # Isometric commit calendar
           plugin_isocalendar: yes
@@ -31,7 +31,7 @@ jobs:
 
           # Full history commit calendar
           plugin_calendar: yes
-          plugin_calendar_limit: 4
+          plugin_calendar_limit: 5
 
           # Languages
           plugin_languages: yes
