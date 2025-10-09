@@ -30,8 +30,8 @@ jobs:
           plugin_isocalendar_duration: full-year
 
           # Full history commit calendar
-          plugin_history: yes
-          plugin_history_limit: 0
+          plugin_calendar: yes
+          plugin_calendar_limit: 0
 
           # Languages
           plugin_languages: yes
@@ -43,17 +43,3 @@ jobs:
           plugin_activity_limit: 5
           plugin_activity_days: 14
           plugin_activity_filter: all
-
-          # Custom Introduction (for experience, education, etc.)
-          plugin_introduction: yes
-          plugin_introduction_title: "About Me"
-          plugin_introduction_message: |
-            - 🎓 **Education:** Nanjing University (UNDERGRADUATE)
-            - 🏆 **Experience:**
-              - Member, NJU NOVA Club (2025-present)
-              - Core Member, NJU AIA Club (2025-present)
-              - Mathematics Moderator, Chaoli Club (2021-Present)
-              - Organizer, Geek College (2020-2022)
-              - Associate Host, Mathematics Tieba (2020-2021)
-            - 🌏 **Location:** Nanjing, Jiangsu
-            - 🗣️ **Languages:** Chinese, English
