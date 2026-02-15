@@ -1,7 +1,9 @@
+# https://github.com/lowlighter/metrics
+
 name: GitHub Profile Metrics
+
 on:
-  schedule:
-    - cron: "0 0 * * *"
+  schedule: [{cron: "0 0 * * *"}]
   workflow_dispatch:
 
 jobs:
@@ -11,54 +13,50 @@ jobs:
       - name: Metrics
         uses: lowlighter/metrics@latest
         with:
-          # 【核心】必须使用 secrets 中的 Token
+          # Your GitHub token
           token: ${{ secrets.METRICS_TOKEN }}
+          # GITHUB_TOKEN is required for some plugins to access private data
+          committer_token: ${{ secrets.GITHUB_TOKEN }}
+          
           user: ChouYuanjue
           template: classic
           config_timezone: Asia/Shanghai
 
-          # -------------------- 布局设置 (解决并排问题) --------------------
-          config_display: columns
-          config_columns: 1
-          config_order: base.header, base.repositories, languages, isocalendar, calendar, stars, activity
-
-          # -------------------- 基础部分 (包含私有仓库统计) --------------------
+          # Base sections
           base: header, activity, community, repositories, metadata
-          # 必须包含 owner 和 collaborator 才能穿透私有仓库
-          repositories_affiliations: owner, collaborator
-          # 告诉 metrics 插件允许操作私有数据
-          config_allow_data_fetching: yes
-
-          # -------------------- 语言统计 (解决全空问题) --------------------
-          plugin_languages: yes
-          # indepth 模式配合 token 才能在 Action 运行环境下 clone 你的私有仓库并读取代码
-          plugin_languages_indepth: yes 
-          # 修复 point: 只有指定 indepth，才能穿透私有推送
-          plugin_languages_analysis_timeout: 30
-          plugin_languages_categories: markup, programming
-          plugin_languages_details: percentage, bytes-size
-          plugin_languages_limit: 8
-          plugin_languages_recent_days: 60
-          plugin_languages_recent_load: 500
-          plugin_languages_sections: most-used, recently-used
-          plugin_languages_ignored: html, css, tex
-
-          # -------------------- 最近活动 (解决 Error 问题) --------------------
-          plugin_activity: yes
-          plugin_activity_limit: 5
-          plugin_activity_days: 14
-          plugin_activity_filter: all
-          # 【关键】必须设为 all，否则 API 将拒绝返回私有仓库的 Push 事件
-          plugin_activity_visibility: all
-          # 必须显式通过 committer_token 提高权限上限
-          committer_token: ${{ secrets.METRICS_TOKEN }}
-
-          # -------------------- 其它插件 --------------------
-          plugin_stars: yes
-          plugin_stars_limit: 4
           
+          # =========================================================
+          # 1. Recently Starred Repositories (Replaces Featured)
+          # =========================================================
+          plugin_stars: yes
+          plugin_stars_limit: 4 # Number of stars to display
+
+          # =========================================================
+          # 2. Languages + Recently Used Languages
+          # =========================================================
+          plugin_languages: yes
+          plugin_languages_ignored: ""
+          plugin_languages_limit: 8
+          plugin_languages_sections: most-used, recently-used
+          plugin_languages_recent_categories: markup, programming
+          plugin_languages_recent_days: 30  # Analyze last 14 days
+          plugin_languages_recent_load: 300 # Analyze last 300 events
+          plugin_languages_indepth: yes     # Increased accuracy (optional)
+
+          # =========================================================
+          # 3. Other Plugins
+          # =========================================================
+
+          # Isometric commit calendar
           plugin_isocalendar: yes
           plugin_isocalendar_duration: full-year
-          
+
+          # Full history commit calendar
           plugin_calendar: yes
-          plugin_calendar_limit: 1
+          plugin_calendar_limit: 5
+
+          # Recent activity
+          plugin_activity: yes
+          plugin_activity_limit: 5
+          plugin_activity_days: 120
+          plugin_activity_filter: all
