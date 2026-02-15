@@ -50,10 +50,3 @@ jobs:
           # Full history commit calendar
           plugin_calendar: yes
           plugin_calendar_limit: 5
-
-          # Recent activity
-          plugin_activity: yes
-          plugin_activity_limit: 5
-          plugin_activity_days: 120
-          plugin_activity_filter: all
-          plugin_activity_visibility: public
