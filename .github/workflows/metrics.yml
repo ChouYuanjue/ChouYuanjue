@@ -59,4 +59,4 @@ jobs:
           plugin_activity: yes
           plugin_activity_limit: 5
           plugin_activity_days: 120
-          plugin_activity_filter: all
+          plugin_activity_filter: user/repo/push, user/repo/star, user/repo/created
