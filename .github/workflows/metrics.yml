@@ -21,9 +21,9 @@ jobs:
           # Base sections
           base: header, activity, community, repositories, metadata
 
-          # Featured repositories (add up to 6, including your top projects)
-          plugin_repositories: yes
-          plugin_repositories_featured: ChouYuanjue/doge-repo,ChouYuanjue/TeX-QB-Gen,ChouYuanjue/PDF_Summary_Tool,ChouYuanjue/AI_Emoji_Kitchen_Lab,ChouYuanjue/Informal_Notes_on_Mathematics,ChouYuanjue/Tangut_Chinese_Translator
+          # 最近 star 的仓库（取代原固定 featured 仓库）
+          plugin_stars: yes
+          plugin_stars_limit: 5                # 可调整显示数量
 
           # Isometric commit calendar
           plugin_isocalendar: yes
@@ -33,13 +33,15 @@ jobs:
           plugin_calendar: yes
           plugin_calendar_limit: 5
 
-          # Languages
+          # 语言统计：同时显示所有仓库语言和最近使用语言（最近两个月）
           plugin_languages: yes
+          plugin_languages_sections: languages, recently-used   # 两种统计都启用
           plugin_languages_ignored: ""
           plugin_languages_limit: 8
+          plugin_languages_recent_days: 60      # 最近使用语言的时间范围：60天（约2个月）
 
           # Recent activity
           plugin_activity: yes
           plugin_activity_limit: 5
-          plugin_activity_days: 14
+          plugin_activity_days: 365
           plugin_activity_filter: all
