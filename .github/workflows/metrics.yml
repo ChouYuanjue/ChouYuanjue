@@ -17,33 +17,48 @@ jobs:
           user: ChouYuanjue
           template: classic
           config_timezone: Asia/Shanghai
+          
+          # 增加内边距
+          config_padding: 0, 8%
 
-          # Base sections
+          # 权限设置
+          repositories_affiliations: owner, collaborator, organization_member
+
           base: header, activity, community, repositories, metadata
 
-          # 最近 star 的仓库
+          # -------------------- 语言统计优化 --------------------
+          plugin_languages: yes
+          # 同时显示这两个部分
+          plugin_languages_sections: most-used recently-used
+          
+          # 【关键修改 1】开启深度模式 (indepth)
+          # 这通常会生成更详细的报告，改变布局方式，使它们更倾向于垂直堆叠或占据整行
+          plugin_languages_indepth: yes
+          
+          # 【关键修改 2】增加细节显示
+          # 显示字节数和百分比，增加图表宽度，迫使布局引擎换行
+          plugin_languages_details: bytes-size, percentage
+          
+          plugin_languages_ignored: ""
+          plugin_languages_limit: 8
+          plugin_languages_recent_days: 60
+          
+          # 可选：最近使用的代码加载限制，设高一点保证数据准确
+          plugin_languages_recent_load: 1000 
+          
+          # -------------------- 其他插件 --------------------
+
           plugin_stars: yes
           plugin_stars_limit: 5
 
-          # Isometric commit calendar
           plugin_isocalendar: yes
           plugin_isocalendar_duration: full-year
 
-          # Full history commit calendar
           plugin_calendar: yes
           plugin_calendar_limit: 3
 
-          # 语言统计：同时显示所有仓库语言（含私有）和最近两个月使用的语言
-          plugin_languages: yes
-          plugin_languages_sections: languages, recently-used   # 两种统计都显示
-          plugin_languages_include_private: yes                 # 包含私有仓库
-          plugin_languages_ignored: ""
-          plugin_languages_limit: 8
-          plugin_languages_recent_days: 60                      # 最近使用语言的时间范围（2个月）
-
-          # Recent activity（含私有仓库）
           plugin_activity: yes
           plugin_activity_limit: 5
-          plugin_activity_days: 30
+          plugin_activity_days: 14
           plugin_activity_filter: all
-          plugin_activity_include_private: yes                  # 包含私有仓库的活动
+          plugin_activity_visibility: all
