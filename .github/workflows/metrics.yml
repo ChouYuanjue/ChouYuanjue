@@ -17,7 +17,7 @@ jobs:
         uses: lowlighter/metrics@latest
         with:
           # Use the default GitHub Actions token so commits are authored by github-actions[bot]
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.METRICS_TOKEN }}
           committer_token: ${{ secrets.GITHUB_TOKEN }}
 
           user: ChouYuanjue
